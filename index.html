@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speedy Swim Academy | Master the Water</title>
+    <style>
+        /* --- Brand Colors & Variables --- */
+        :root {
+            --primary-navy: #0A2540;
+            --primary-blue: #0077FF;
+            --accent-teal: #00BFFF;
+            --bg-light: #F8F9FA;
+            --white: #FFFFFF;
+            --text-main: #333333;
+            --text-muted: #6C757D;
+            --border-color: #E2E8F0;
+        }
+
+        /* --- Global Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 0.8rem 1.8rem;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            white-space: nowrap; /* Prevents text from wrapping awkwardly */
+        }
+
+        .btn:hover {
+            background-color: var(--primary-navy);
+            transform: translateY(-2px);
+            color: var(--white);
+        }
+
+        .btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background-color: var(--white);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-navy);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: var(--accent-teal);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .social-icons svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--primary-navy);
+            transition: fill 0.3s, transform 0.2s;
+        }
+
+        .social-icons a:hover svg {
+            fill: var(--primary-blue);
+            transform: scale(1.1);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 85vh;
+            background: linear-gradient(rgba(10, 37, 64, 0.8), rgba(0, 119, 255, 0.6)), url('https://images.unsplash.com/photo-1530549387789-4c1017266635?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 5%;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        /* --- Sections Shared Styles --- */
+        .section {
+            padding: 5rem 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- Why Choose Us --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+            transition: transform 0.3s;
+            border-bottom: 4px solid var(--accent-teal);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* --- Pricing & Plans --- */
+        .pricing-section {
+            background-color: var(--primary-navy);
+            color: var(--white);
+        }
+
+        .pricing-section .section-header h2 {
+            color: var(--white);
+        }
+
+        .pricing-section .section-header p {
+            color: #A0B3C6;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            align-items: stretch;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            color: var(--text-main);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .pricing-card-header {
+            background-color: var(--bg-light);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .pricing-card-header h3 {
+            color: var(--primary-navy);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-card-header p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .pricing-tiers {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .tier {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tier:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .tier-info span {
+            display: block;
+            font-weight: 600;
+            color: var(--primary-navy);
+        }
+
+        .tier-info small {
+            color: var(--text-muted);
+        }
+
+        .tier-price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+        }
+
+        .pricing-details {
+            padding: 0 2rem 2rem;
+            flex-grow: 1;
+        }
+
+        .pricing-details h5 {
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            border-bottom: 2px solid var(--accent-teal);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .pricing-details ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-details ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .pricing-details ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-teal);
+            font-weight: bold;
+        }
+
+        .pricing-card-footer {
+            padding: 2rem;
+            text-align: center;
+            background-color: var(--bg-light);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .pricing-card-footer .btn {
+            width: 100%;
+        }
+
+        /* --- Floating Social Buttons (FB & IG) --- */
+        .floating-socials {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px; 
+            z-index: 100;
+        }
+
+        .social-float {
+            width: 60px;
+            height: 60px;
+            color: #FFF;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            box-shadow: 2px 4px 15px rgba(0,0,0,0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .social-float:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 2px 6px 20px rgba(0,0,0,0.35);
+        }
+
+        .fb-float {
+            background-color: #1877F2; 
+        }
+
+        .ig-float {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        .social-float svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #051324;
+            color: var(--white);
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            color: var(--accent-teal);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+            color: #A0B3C6;
+        }
+
+        .footer-col a {
+            color: #A0B3C6;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #A0B3C6;
+            font-size: 0.9rem;
+        }
+
+        /* --- Responsive / Mobile Fixes --- */
+        @media (max-width: 768px) {
+            header {
+                padding: 0.8rem 4%; 
+            }
+            .nav-links {
+                display: none; 
+            }
+            .logo {
+                font-size: 1.2rem; /* Shrunk slightly for better fit */
+                gap: 6px;
+            }
+            .logo svg {
+                width: 22px; 
+                height: 22px;
+            }
+            .social-icons {
+                gap: 5px;
+            }
+            /* Hide the FB and IG icons in the header on mobile (they are floating anyway) */
+            .social-icons > a:not(.btn) {
+                display: none; 
+            }
+            .btn {
+                padding: 0.5rem 0.8rem; 
+                font-size: 0.85rem; 
+            }
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .floating-socials {
+                bottom: 20px;
+                right: 20px;
+                gap: 10px;
+            }
+            .social-float {
+                width: 50px;
+                height: 50px;
+            }
+            .social-float svg {
+                width: 26px;
+                height: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="var(--primary-blue)" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 12C2 12 5 15 12 15C19 15 22 12 22 12C22 12 19 9 12 9C5 9 2 12 2 12Z" stroke="var(--primary-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 17C2 17 5 20 12 20C19 20 22 17 22 17" stroke="var(--accent-teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 7C2 7 5 10 12 10C19 10 22 7 22 7" stroke="var(--primary-navy)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Speedy <span>Swim</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#features">Why Us</a></li>
+            <li><a href="#pricing">Plans & Pricing</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/myspeedyswimacademy/" target="_blank" aria-label="Facebook">
+                <svg viewBox="0 0 320 512"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/speedyswimacademy/" target="_blank" aria-label="Instagram">
+                <svg viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+            </a>
+            
+            <a href="https://wa.me/speedyswim" target="_blank" class="btn">
+                <svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157.1zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+                Register Now
+            </a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Dive Into Success<br>From Zero to Hero</h1>
+        <p>Expert-led swimming lessons for all ages, focusing on water confidence, safety, and elite skill development. Join Speedy Swim Academy today.</p>
+        <a href="#pricing" class="btn" style="padding: 1rem 2.5rem; font-size: 1.1rem;">View Our Plans</a>
+    </section>
+
+    <section id="features" class="section">
+        <div class="section-header">
+            <h2>Why Choose Speedy Swim</h2>
+            <p>We combine professional coaching, premium facilities, and modern technology to deliver an unparalleled aquatic learning experience.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🏅</div>
+                <h3>Certified Professionals</h3>
+                <p>Our instructors hold international certifications and undergo rigorous training to ensure top-quality, safe instruction.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌊</div>
+                <h3>European Saltwater</h3>
+                <p>Experience the difference with our advanced saltwater chlorination system. Gentler on the skin, eyes, and hair.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Progress Tracking</h3>
+                <p>Stay informed with our dedicated progress tracking system. Monitor real-time achievements and key milestones.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Personalised Focus</h3>
+                <p>From water phobia to competitive technique, we tailor course recommendations based on your unique skill level.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="section pricing-section">
+        <div class="section-header">
+            <h2>Plans & Pricing</h2>
+            <p>Flexible packages designed to fit your schedule and goals. Dive into our elite coaching programs today.</p>
+        </div>
+        
+        <div class="pricing-grid">
+            
+            <div class="pricing-card">
+                <div class="pricing-card-header">
+                    <h3>Group Lessons</h3>
+                    <p>Message us on WhatsApp to check availability!</p>
+                </div>
+                <div class="pricing-tiers">
+                    <div class="tier">
+                        <div class="tier-info">
+                            <span>4 sessions</span>
+                            <small>Once per week</small>
+                        </div>
+                        <div class="tier-price">RM 290</div>
+                    </div>
+                    <div class="tier">
+                        <div class="tier-info">
+                            <span>8 sessions</span>
+                            <small>Twice per week</small>
+                        </div>
+                        <div class="tier-price">RM 490</div>
+                    </div>
+                    <div class="tier">
+                        <div class="tier-info">
+                            <span>12 sessions</span>
+                            <small>Once per week</small>
+                        </div>
+                        <div class="tier-price">RM 759</div>
+                    </div>
+                </div>
+                <div class="pricing-details">
+                    <h5>Package Details</h5>
+                    <ul>
+                        <li>Class duration is 60 minutes per session.</li>
+                        <li>Maximum 4 pax per session per coach.</li>
+                        <li>Price will be pro-rated for 5-week months.</li>
+                    </ul>
+                    <h5>Academy Perks</h5>
+                    <ul>
+                        <li><strong>Unlimited self-practice</strong> pool usage.</li>
+                        <li>Priority given to ongoing classes.</li>
+                    </ul>
+                </div>
+                <div class="pricing-card-footer">
+                    <a href="https://wa.me/speedyswim" target="_blank" class="btn">
+                        <svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157.1zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+                        Book Now
+                    </a>
+                </div>
+            </div>
+
+            <div class="pricing-card">
+                <div class="pricing-card-header">
+                    <h3>Private Lessons</h3>
+                    <p>Message us on WhatsApp to check availability!</p>
+                </div>
+                <div class="pricing-tiers">
+                    <div class="tier">
+                        <div class="tier-info">
+                            <span>One to One</span>
+                            <small>Once per week</small>
+                        </div>
+                        <div class="tier-price">RM 640</div>
+                    </div>
+                    <div class="tier">
+                        <div class="tier-info">
+                            <span>Group of Two</span>
+                            <small>Once per week</small>
+                        </div>
+                        <div class="tier-price">RM 800</div>
+                    </div>
+                    <div class="tier">
+                        <div class="tier-info">
+                            <span>Group of Three</span>
+                            <small>Once per week</small>
+                        </div>
+                        <div class="tier-price">RM 879</div>
+                    </div>
+                </div>
+                <div class="pricing-details">
+                    <h5>Package Details</h5>
+                    <ul>
+                        <li>60 minutes per session with a personal coach.</li>
+                        <li>Missed classes can be carried forward.</li>
+                        <li>Flexible time arrangements; credits never expire.</li>
+                    </ul>
+                    <h5>Academy Perks</h5>
+                    <ul>
+                        <li><strong>Unlimited self-practice</strong> pool usage.</li>
+                        <li>Priority given to ongoing classes.</li>
+                    </ul>
+                </div>
+                <div class="pricing-card-footer">
+                    <a href="https://wa.me/speedyswim" target="_blank" class="btn">
+                        <svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157.1zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+                        Book Now
+                    </a>
+                </div>
+            </div>
+
+            <div class="pricing-card">
+                <div class="pricing-card-header">
+                    <h3>Specialty Classes</h3>
+                    <p>Tailored programs for specific needs.</p>
+                </div>
+                <div class="pricing-tiers">
+                    <div class="tier" style="background-color: var(--bg-light); padding: 1rem; border-radius: 8px;">
+                        <div class="tier-info">
+                            <span style="color: var(--accent-teal);">Ladies Class (4 Sessions)</span>
+                            <small>Female coaches only</small>
+                        </div>
+                        <div class="tier-price">RM 349</div>
+                    </div>
+                    <div class="tier" style="background-color: var(--bg-light); padding: 1rem; border-radius: 8px; margin-top: -10px;">
+                        <div class="tier-info">
+                            <span style="color: var(--accent-teal);">Ladies Class (12 Sessions)</span>
+                            <small>Female coaches only</small>
+                        </div>
+                        <div class="tier-price">RM 978</div>
+                    </div>
+                    
+                    <div class="tier" style="background-color: #e6f7ff; padding: 1rem; border-radius: 8px;">
+                        <div class="tier-info">
+                            <span style="color: var(--primary-blue);">Baby Class (1 Session)</span>
+                            <small>30 mins / Max 4 pax</small>
+                        </div>
+                        <div class="tier-price">RM 90</div>
+                    </div>
+                    <div class="tier" style="background-color: #e6f7ff; padding: 1rem; border-radius: 8px; margin-top: -10px;">
+                        <div class="tier-info">
+                            <span style="color: var(--primary-blue);">Baby Class (4 Sessions)</span>
+                            <small>30 mins / Max 4 pax</small>
+                        </div>
+                        <div class="tier-price">RM 290</div>
+                    </div>
+                </div>
+                <div class="pricing-details">
+                    <h5>Package Details</h5>
+                    <ul>
+                        <li>Ladies Class: 60 mins. Max 4 pax.</li>
+                        <li>Baby Class: 30 mins. Max 4 pax.</li>
+                        <li>Prices pro-rated for 5-week months.</li>
+                    </ul>
+                    <h5>Academy Perks</h5>
+                    <ul>
+                        <li><strong>Unlimited self-practice</strong> pool usage.</li>
+                    </ul>
+                </div>
+                <div class="pricing-card-footer">
+                    <a href="https://wa.me/speedyswim" target="_blank" class="btn">
+                        <svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157.1zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+                        Book Now
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <p style="text-align: center; margin-top: 2rem; font-size: 0.9rem; color: #A0B3C6;">*All prices are subject to 8% SST. Make confirmation with us to ensure there is at least 1 empty lane available for self-practice.</p>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-col">
+                <a href="#" class="logo" style="color: var(--white); margin-bottom: 1rem;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 12C2 12 5 15 12 15C19 15 22 12 22 12C22 12 19 9 12 9C5 9 2 12 2 12Z" stroke="var(--white)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Speedy <span style="color: var(--accent-teal);">Swim</span>
+                </a>
+                <p style="color: #A0B3C6; margin-bottom: 1.5rem; max-width: 300px;">Empowering the next generation of swimmers with top-notch coaching, premium facilities, and a supportive community.</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/myspeedyswimacademy/" target="_blank" aria-label="Facebook">
+                        <svg viewBox="0 0 320 512" style="fill: var(--accent-teal);"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/speedyswimacademy/" target="_blank" aria-label="Instagram">
+                        <svg viewBox="0 0 448 512" style="fill: var(--accent-teal);"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Useful Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#features">Our Courses</a></li>
+                    <li><a href="#pricing">Plans & Pricing</a></li>
+                    <li><a href="#">Testimonials</a></li>
+                    <li><a href="#">Career</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <ul>
+                    <li><strong>Email:</strong> info@speedyswim.com</li>
+                    <li><strong>WhatsApp:</strong> <a href="https://wa.me/speedyswim" target="_blank" style="color: var(--accent-teal); text-decoration: underline;">Chat with us</a></li>
+                    <li><strong>Hours:</strong> Mon - Sun (Flexible Timings)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Speedy Swim Academy. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+    <div class="floating-socials">
+        <a href="https://www.facebook.com/myspeedyswimacademy/" target="_blank" class="social-float fb-float" aria-label="Visit our Facebook page">
+            <svg viewBox="0 0 320 512"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/speedyswimacademy/" target="_blank" class="social-float ig-float" aria-label="Visit our Instagram page">
+            <svg viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+        </a>
+    </div>
+
+</body>
+</html>
